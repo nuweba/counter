@@ -24,11 +24,7 @@ func (c *Counter) Counter() uint64 {
 }
 
 func (c *Counter) UpdateMax(current uint64) bool {
-	max := c.Max()
-	if current > max {
-		return atomic.CompareAndSwapUint64(&c.max, max, current)
-	}
-	return false
+	return atomic.CompareAndSwapUint64(&c.max, current - 1, current)
 }
 
 func (c *Counter) Max() uint64 {
