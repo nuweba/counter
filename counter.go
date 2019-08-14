@@ -19,8 +19,8 @@ func (c *Counter) Dec() uint64 {
 	return atomic.AddUint64(&c.count, ^uint64(0))
 }
 
-func (c *Counter) Reset() uint64 {
-	return atomic.StoreUint64(&c.count, uint64(0))
+func (c *Counter) Reset() {
+	atomic.StoreUint64(&c.count, uint64(0))
 }
 
 func (c *Counter) Counter() uint64 {
